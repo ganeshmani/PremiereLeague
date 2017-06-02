@@ -1,0 +1,45 @@
+
+
+<button type="button" class="btn btn-info"  data-toggle="collapse" data-target="#demo">Filter</button>
+  <div id="demo" class="collapse">
+    <div class="col-md-12"> 
+     <h4>Filter By</h4>
+         <input type="search" ng-model="q" placeholder="Filter By ..." aria-label="filter friends" />
+    </div>
+    
+  </div>
+ 
+
+       
+        <div class="row" ng-repeat="round in page.rounds">
+        <div class="col-md-12" >
+        <div class="card hover-1 ">
+        <span class="class-title valign center">
+           <h1>{{round.name}}</h1>
+
+        </span>
+         </div>
+         </div>
+
+ 
+          <div class="col-md-6" ng-repeat="match in round.matches | filter:q as results"">
+          
+                <div class="card small hoverable">
+                    <div class="card-content">
+                         
+                         <span class="card-title">
+                            <h5 class="center-align"><a ng-href="#!/teams">{{match.team1.name}} vs {{match.team2.name}}</a></h5>
+                        </span> 
+                        <hr>
+                        <h4 class="center-align">Scores</h4>
+                        <span><h5 class="center-align">Team1 : {{match.score1}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Team2 : {{match.score2}}</h5></span>                     
+                    </div>
+                     <div class="card-action">
+                         <a ng-href="#!/match/{{$index}}/{{$parent.$index}}" class="ali" style="color: #1976d2; font-weight: bolder; font-weight: 200;">GO TO STATISTICS</a>
+                     </div>
+                </div>
+                
+                
+               </div>
+        </div>
+    

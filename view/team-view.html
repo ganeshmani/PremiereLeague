@@ -1,0 +1,35 @@
+ <div class="row" ng-init="teamsstatistics.load()">
+   <h2 class="center-align">{{teamsstatistics.pageheading}}</h2>
+   
+   <table class="bordered table-responsive centered">
+        <thead 
+          <tr>
+              <th>Team Name</th>
+              <th>Total Played</th>
+              <th>Won</th>
+              <th>Lost</th>
+              <th>Drawn</th>
+          </tr>
+        </thead>
+
+        <tbody class="animate-repeat" ng-repeat="mt in teamsstatistics.stats">
+          <tr>
+            <td>{{mt.team}}</td>
+            <td>{{mt.played}}</td>
+            <td>{{mt.won}}</td>
+            <td>{{mt.lost}}</td>
+            <td>{{mt.draw}}</td>
+          </tr>
+          </tbody>
+      </table>
+
+
+ </div>
+  <div class="col-md-12">
+      <ul class="pager">
+                    <li class="next">
+                        <a href="#!/">Back to Home &rarr;</a>
+                    </li>
+                </ul>
+
+   </div>
