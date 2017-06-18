@@ -13,7 +13,7 @@ myApp.config(['$routeProvider', function($routeProvider){
         	controller 		: 'teamController',
         	controllerAs 	: 'teamsstatistics'
         })
-        .when('/match/:matchId/:roundId',{
+        .when('/match/:matchId/:roundId/:yearId',{
 
         	templateUrl     : 'view/match-view.html',
         	controller 		: 'matchController',

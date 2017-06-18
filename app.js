@@ -1,54 +1,61 @@
 var myApp = angular.module('myApp',['ngRoute','ngAnimate']);
 
-myApp.controller('mainController',['$http',function($http){
+myApp.controller('mainController',['$http','$q',function($http,$q){
 
   var main = this;
   this.pageheading = "";
   this.rounds = {};
 
+   this.match = []; 
 
    this.url = "2015-16";
 
    this.url1 = "2016-17";
 
-   this.match = {};
 
   this.baseUrl1 = 'https://raw.githubusercontent.com/openfootball/football.json/master/2016-17/en.1.json';
-  this.baseUrl = 'https://raw.githubusercontent.com/openfootball/football.json/master/'+this.url+'/en.1.json';
+  this.baseUrl = 'https://raw.githubusercontent.com/openfootball/football.json/master/2015-16/en.1.json';
 
  
 
   this.load = function(){
-   $http({
+   var JSON1 = $http({
    	method : 'GET',
     url : this.baseUrl
 
-   }).then(function successCallback(response){
+   });
+   var JSON2 = $http({
+    method : 'GET',
+    url : this.baseUrl1
 
-   	 main.pageheading = response.data.name
+   });
 
-   	 main.rounds = response.data.rounds;
+    $q.all([JSON1,JSON2]).then(function successCallback(response){
+    main.matchData = []; 
+   	// main.pageheading = response.data.name
+
+   	 //main.rounds = response.data.rounds;
+      
     
-     angular.forEach(main.rounds, function(round, index){
-   //Just add the index to your item
-   //round.index = index;
-       angular.forEach(round.matches,function(match,index){
-          //match.index = index;
-         // console.log(index);
-
-       });
+    angular.forEach(response, function(responseData){
+     //Just add the index to your item
+     //round.index = index;
+      main.match = responseData.data;
+      main.matchData.push(main.match);
+      console.log(main.matchData);
+      
     });
    	  
 
      //console.log(main.rounds);
 
    }, function errorCallback(response){
-
+       console.log("Error Occured");
 
    });
 }
 
-  this.load();
+
 
  myFunc = function(){
    this.baseUrl = 'https://raw.githubusercontent.com/openfootball/football.json/master/2015-16/en.1.json';
@@ -331,6 +338,7 @@ myApp.controller('teamController',['$http',function($http){
 
   this.matchid = $routeParams.matchId;
   this.roundid = $routeParams.roundId;
+  this.yearId = $routeParams.yearId;
 
   
    this.url = "2015-16";
@@ -351,9 +359,16 @@ myApp.controller('teamController',['$http',function($http){
 
 
    
-
-  this.baseUrl1 = 'https://raw.githubusercontent.com/openfootball/football.json/master/2016-17/en.1.json';
-  this.baseUrl = 'https://raw.githubusercontent.com/openfootball/football.json/master/'+this.url+'/en.1.json';
+  if(this.yearId == '0')
+  {
+    this.baseUrl = 'https://raw.githubusercontent.com/openfootball/football.json/master/2015-16/en.1.json';
+  }
+  else if(this.yearId == '1')
+  {
+    this.baseUrl = 'https://raw.githubusercontent.com/openfootball/football.json/master/2016-17/en.1.json';
+  }
+  
+  
 
  
 

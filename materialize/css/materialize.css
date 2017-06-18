@@ -2267,6 +2267,7 @@ dfn {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 /**
@@ -4457,6 +4458,9 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   line-height: 1.1;
 }
+h2{
+  font-family: 'Anton', sans-serif;
+}
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   font-weight: inherit;
@@ -4675,7 +4679,7 @@ small {
 
 .card-panel {
   transition: box-shadow .25s;
-  padding: 24px;
+  padding: 28px;
   margin: 0.5rem 0 1rem 0;
   border-radius: 2px;
   background-color: #fff;
@@ -4684,11 +4688,11 @@ small {
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #fff;
+  background-color: #000000;
   transition: box-shadow .25s;
   border-radius: 2px;
-
-  
+  color: #ffffff;
+  background:rgba(0,0,0,0.5);
 }
 
 .card .card-title {
@@ -4832,6 +4836,18 @@ small {
   margin-bottom: 12px;
 }
 
+.filters{
+    list-style: none;
+    width: 100%;
+    float: right; 
+    background:rgba(0,0,0,0.6);
+    padding: 10px;
+    margin-top: -58px;
+    border-radius:0 0 16px 16px;
+     }
+.filters li{display: inline-block;margin: 25px;}
+.filters input{border-radius:23px;border: 0;padding: 25px;}
+
 .card .card-content .card-title i {
   line-height: 32px;
 }
@@ -4841,6 +4857,7 @@ small {
   background-color: inherit;
   border-top: 1px solid rgba(160, 160, 160, 0.2);
   padding: 16px 24px;
+  background:rgba(0,0,0,0.5);
 }
 
 .card .card-action:last-child {
@@ -6371,9 +6388,7 @@ textarea.materialize-textarea {
    ========================================================================== */
 [type="radio"]:not(:checked),
 [type="radio"]:checked {
-  position: absolute;
-  left: -9999px;
-  opacity: 0;
+ 
 }
 
 [type="radio"]:not(:checked) + label,

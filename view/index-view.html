@@ -1,45 +1,78 @@
 
 
-<button type="button" class="btn btn-info"  data-toggle="collapse" data-target="#demo">Filter</button>
-  <div id="demo" class="collapse">
-    <div class="col-md-12"> 
-     <h4>Filter By</h4>
-         <input type="search" ng-model="q" placeholder="Filter By ..." aria-label="filter friends" />
-    </div>
-    
-  </div>
- 
+  
+    <div class="row"  ng-init="page.load()">
+  <div class="col-md-12">
+        
+    <ul class="filters" style="color: white;">
+   
+    <li><input type="text" ng-model="round.name" st placeholder="Filter By Match day"/></li>
+    <li ><input type="text" ng-model="search.date" placeholder="Filter By Date"/></li>
+    <li><input type="text" ng-model="search" placeholder="Filter By Team Name"/></li>
+    <li><input type="text" ng-model="search.score1"  placeholder="Filter By Score"/></li>
+     <li>
+        <label style="font-weight: bold">Select Year : </label>
+        <label> 
+        <input type="radio"  ng-model="year" name="year" checked>
+        2015/16
+        </label>
+        <label>
+        <input type="radio" ng-model="year" name="year" value="reverse">
+        2016/17
+        </label>
+
+
+    </li>
+
+</ul>
+  
+   </div>
+        </div>
 
        
-        <div class="row" ng-repeat="round in page.rounds">
+        <div class="row" ng-repeat="matchdata in page.matchData | orderBy:matchdata.name:year track by $index">
         <div class="col-md-12" >
-        <div class="card hover-1 ">
-        <span class="class-title valign center">
-           <h1>{{round.name}}</h1>
+        <div class="hover-1 ">
+        <span class="class-title valign center" >
+           <h1 style="color: white;">{{matchdata.name}}</h1>
 
         </span>
          </div>
          </div>
 
  
-          <div class="col-md-6" ng-repeat="match in round.matches | filter:q as results"">
-          
-                <div class="card small hoverable">
+          <div class="col-md-12" ng-repeat="round in matchdata.rounds | filter:round"">
+               <div class="col-md-12" >
+                  <div class="card hover-1 ">
+                    <span class="class-title valign center">
+                    <h2>{{round.name}}</h2>
+                  </span>
+                </div>
+
+                <div class="card medium hoverable col-md-6" ng-repeat="match in round.matches | filter :search">
                     <div class="card-content">
-                         
-                         <span class="card-title">
-                            <h5 class="center-align"><a ng-href="#!/teams">{{match.team1.name}} vs {{match.team2.name}}</a></h5>
+                        <span class="card-title">
+                            <h5 class="center-align" style="color: orange;"><a ng-href="#!/teams">{{match.team1.name}} vs {{match.team2.name}}</a></h5>
                         </span> 
                         <hr>
                         <h4 class="center-align">Scores</h4>
-                        <span><h5 class="center-align">Team1 : {{match.score1}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Team2 : {{match.score2}}</h5></span>                     
+                        <span><h5 class="center-align" style="color: #07dc83;">Team1 : {{match.score1}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Team2 : {{match.score2}}</h5></span>  
+                        <hr>
+                        <h4 class="center-align">Match Date</h4>
+                        <span><h5 class="center-align">{{match.date}}</h5></span>                    
                     </div>
-                     <div class="card-action">
-                         <a ng-href="#!/match/{{$index}}/{{$parent.$index}}" class="ali" style="color: #1976d2; font-weight: bolder; font-weight: 200;">GO TO STATISTICS</a>
+                     <div class="card-action center-align">
+                         <a ng-href="#!/match/{{$index}}/{{$parent.$index}}/{{$parent.$parent.$index}}" class="ali" style="color: #1976d2; font-weight: bolder; font-weight: 200;">GO TO STATISTICS</a>
                      </div>
-                </div>
+
+             </div>
+
+
                 
                 
                </div>
         </div>
+        </div>
+
+       
     
